@@ -2,15 +2,16 @@
 import argparse
 import requests
 import webtech
+import json
 
 def scan_website(url):
     try:
-        response = requests.get(url, timeout=5)  # Set the timeout value here (in seconds)
+        response = requests.get(url, timeout=10)  # Set the timeout value here (in seconds)
         response.raise_for_status()  # Raise an exception for non-2xx status codes
 
         wt = webtech.WebTech(options={'json': True})
         report = wt.start_from_url(url)
-        return report['tech']
+        return report
     except requests.exceptions.RequestException as e:
         print(f"Error scanning {url}: {e}")
         return None
@@ -27,12 +28,8 @@ if __name__ == "__main__":
 
     for url in args.urls:
         techs = scan_website(url)
-        if techs is not None:
-            results.append((url, techs))
-
-    for url, techs in results:
-        print("Site: {}".format(url))
-        for tech in techs:
-            print(" - {}".format(tech))
-
+        data_dict = techs
+        pretty_json_string = json.dumps(data_dict, indent=4).replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace(",", "").replace('"', '')
+        
+        print(pretty_json_string)
     print("Done")
