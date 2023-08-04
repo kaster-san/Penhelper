@@ -15,7 +15,7 @@ def check_param_vulnerability(url):
         print("                 -----------------------------Sqli_Teest---------------------------------------\n\n\n\n")
 
         #Payloads
-        f = open("sql.txt", "r")
+        f = open("wordlists/sql.txt", "r")
         a = f.readlines()
         
         print(f"Checking URL for sql_injection: {url}")
@@ -34,7 +34,7 @@ def check_param_vulnerability(url):
 
         #Xss--------------------------------------------------------------------
         print("                     -----------------------------Xss_Teest---------------------------------------\n\n\n\n")
-        f = open("xss.txt", "r")
+        f = open("wordlists/xss.txt", "r")
         a = f.readlines()
         
         print(f"Checking URL for sql_injection: {url}")
