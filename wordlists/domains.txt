@@ -1,0 +1,6 @@
+https://ineos.ma/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fineos.ma%2F
+https://ineos.ma/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fineos.ma%2F&format=xml
+https://cyberforces.net/?p=465
+https://cyberforces.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcyberforces.net%2Fcontact%2F
+https://cyberforces.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcyberforces.net%2Fcontact%2F&format=xml
+https://cyberforces.net/wp-content/plugins/advanced-floating-content-lite/public/css/advanced-floating-content-public.css?ver=1.0.0
