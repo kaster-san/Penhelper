@@ -1,11 +1,11 @@
 1 - get technologies + waf infos about website   ✔
 2 - subdomaines ✔
-3 - endpoints and attack surface 
-4 - parameters checkin 
+3 - endpoints and attack surface ✔
+4 - parameters checkin ✔
 4-a if yes (sql - xss - open redirection ... )
 4-b if no sever based scan 
-5- passive scan (versions / software)
-6 - find ip + scan ports
+5- passive scan (versions / software) ✔
+6 - find ip + scan ports ✔
 
 
  
