@@ -2,7 +2,7 @@
 
 
 import requests
-import argparse
+import subprocess
 from urllib.parse import urlparse, urlencode
 
 def check_param_vulnerability(url):
@@ -12,11 +12,12 @@ def check_param_vulnerability(url):
         params = dict(map(lambda x: x.split('='), parsed_url.query.split('&')))
 
         #Sql injection-----------------------------------------------------
-        print("                 -----------------------------Sqli_Teest---------------------------------------\n\n\n\n")
 
-        #Payloads
+                #Payloads
         f = open("wordlists/sql.txt", "r")
         a = f.readlines()
+        error_keywords = ['error', 'syntax', 'exception', 'query', 'mysql', 'pg_', 'sqlite']
+        is_error_based = 0
         
         print(f"Checking URL for sql_injection: {url}")
         print("Parameter Vulnerabilities:")
@@ -27,42 +28,38 @@ def check_param_vulnerability(url):
                 response = requests.get(vulnerable_url)
                 # print(response.text)
             
-                if '404' not in response.text:
-                    print(f"  [VULNERABLE] Parameter: {param}")
-                    print(f"payload: {l}")
-        f.close()
+                for word in error_keywords:
+                    if word in response.text:
+                        print("Error based sql_inject detected")
+                        print(f"  [VULNERABLE] Parameter: {param}")
+                        print(f"payload: {l}")
+                        is_error_based = 1
+                        break
+                        
+            if not is_error_based :
+                print("---> No error based detected\n")
+                print("-->Searching for a blind sqli.....\n")
+                print("...\n")
+
+                try:
+                    # Run the command and capture its output
+                    command = "sqlmap -u " + url
+                    output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, text=True)
+                    a = output.rindex("you can find resul")
+                    print(output[a:])
+                except UnicodeDecodeError:
+                    pass  # Silently ignore the exception and continue with the execution
+                    #Provide input to the process (in this case, just 'yes' to all prompts)
+                    output, error = process.communicate(input='y\n')
+
+            f.close()
 
         #Xss--------------------------------------------------------------------
-        print("                     -----------------------------Xss_Teest---------------------------------------\n\n\n\n")
-        f = open("wordlists/xss.txt", "r")
-        a = f.readlines()
         
-        print(f"Checking URL for sql_injection: {url}")
-        print("Parameter Vulnerabilities:")
-        for param, value in params.items():
-            for l in a:
-                vulnerable_params = {k: l if k == param else v for k, v in params.items()}
-                vulnerable_url = f"{base_url}?{urlencode(vulnerable_params)}"
-                response = requests.get(vulnerable_url)
-            
-                if '404' not in response.text:
-                    print(f"  [VULNERABLE] Parameter: {param}")
-                    print(f"payload: {l}") 
-        f.close()
-
-
-
     except Exception as e:
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--path', type=str, required=True)
-    args = parser.parse_args()
-    
-    domains = open(args.path , "r")
-    domains_list = domains.readlines()
-
-    for domain in domains_list:
-        check_param_vulnerability(domain)
+    #target_url = "https://example.com/test.php?id=1&name=john&age=25"
+    target_url = str(input("Url: "))
+    check_param_vulnerability(target_url)
