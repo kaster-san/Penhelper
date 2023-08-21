@@ -3,7 +3,7 @@
 
 import requests
 import subprocess
-import scan
+import scan_forms_sqlii
 import argparse
 from urllib.parse import urlparse, urlencode
 
