@@ -3,6 +3,8 @@
 
 import requests
 import subprocess
+import scan
+import argparse
 from urllib.parse import urlparse, urlencode
 
 def check_param_vulnerability(url):
@@ -37,6 +39,8 @@ def check_param_vulnerability(url):
                         break
                         
             if not is_error_based :
+                is_error_based = sql_injection_scan(url)
+            if not is_error_based :
                 print("---> No error based detected\n")
                 print("-->Searching for a blind sqli.....\n")
                 print("...\n")
@@ -60,6 +64,12 @@ def check_param_vulnerability(url):
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    #target_url = "https://example.com/test.php?id=1&name=john&age=25"
-    target_url = str(input("Url: "))
-    check_param_vulnerability(target_url)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--path', type=str, required=True)
+    args = parser.parse_args()
+    
+    domains = open(args.path , "r")
+    domains_list = domains.readlines()
+
+    for domain in domains_list:
+        check_param_vulnerability(domain)
