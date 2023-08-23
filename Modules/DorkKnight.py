@@ -38,7 +38,7 @@ def apply_dork_query(dork_query, explanation, api_key, cx):
     else:
         print("No links discovered.\n")
 
-def dorkisation(mytarget, api_key= "AIzaSyC3sbh9dcNVQ8MvyIDGhmEQeN95ZttD6SQ", cx="85b917c14395b4169"):
+def dorkisation(mytarget, api_key= "GOOGLE_API_KEY", cx="CUSTOM_SEARCH_ENGINE_ID"):
     # List of dork queries and explanations
     dork_queries = [
     (f"site:{mytarget} allintext: username filetype: log ", "This dork searches for log files containing the word 'username'. It is useful for finding log files that may contain sensitive information."),
