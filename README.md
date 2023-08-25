@@ -2,10 +2,13 @@
 
 Penhelper is a Python-based automation tool designed for web security assessment, penetration testing, and vulnerability detection. The tool offers a range of modules that automate tasks such as technologies detection, subdomain enumeration, endpoint detection, security header analysis, DNS reconnaissance, and more. Penhelper simplifies the process of identifying vulnerabilities and potential security weaknesses in web applications.
 
+**Please Note:** This tool is currently in an alpha release, which means it's not yet feature-complete and might contain bugs or incomplete functionality. Contributions and feedback are welcome as we work towards improving and enhancing the tool.
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
   - [Installation](#installation)
+  - [API setup](#Obtain-Google-API-Key-and-Custom-Search-Engine-ID)
 - [Usage](#usage)
 - [Modules](#modules)
 - [Contributing](#contributing)
@@ -101,4 +104,14 @@ The **Penhelper** tool includes the following modules:
 ## Contributing
 
 Contributions to the **Penhelper** tool are welcome! Feel free to open issues for bug reports or suggestions, and submit pull requests to contribute improvements or additional features.
+
+## License
+
+Penhelper is released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) (GPL-3.0) License.
+
+This means that you are free to use, modify, and distribute this software under the terms of the GPL-3.0 license. However, it's important to understand and adhere to the terms outlined in the license document. You can find a copy of the full license text in the [LICENSE](./LICENSE.md) file.
+
+Please note that any contributions you make to this project will also be covered by the same license terms.
+
+For more details, please visit the [GNU website](https://www.gnu.org/licenses/gpl-3.0.en.html) to learn about the rights and restrictions provided by this license.
 
